@@ -1,5 +1,25 @@
 // TODO: Include packages needed for this application
-const inquirer = require('inquirer');
+const fs = require('fs');
+const inquirer = require('inquirer')
+const readMe = require('./utils/readme-template')
+    // TODO: Create a function to write README file
+    // writing files
+    // const writeToFile = fileContent => {
+    //     return new Promise((resolve, reject) => {
+    //         fs.writeFile('./dist/readme.md', fileContent, err => {
+    //             if (err) {
+    //                 reject(err);
+    //                 return;
+    //             }
+
+//             resolve({
+//                 ok: true,
+//                 message: 'File created!'
+//             });
+//         });
+//     });
+// };
+
 // TODO: Create an array of questions for user input
 const questions = () => {
     return inquirer.prompt([
@@ -49,12 +69,32 @@ const questions = () => {
         {
             type: 'input',
             name: 'usage',
-            message: 'Provide instructions and examples for use. Include screenshots as needed. (Required)',
+            message: 'Provide usage instructions and examples for use. (Required)',
             validate: usageInput => {
                 if (usageInput) {
                     return true;
                 } else {
                     console.log('Please provide usage instructions!');
+                    return false;
+                }
+            }
+        },
+        // Screenshots?
+        {
+            type: 'confirm',
+            name: 'confirmScreenshots',
+            message: 'Would you like to include screenshots?',
+            default: true
+        },
+        {
+            type: 'input',
+            name: 'screenshots',
+            message: 'If you would like to include screenshots, please type the file name followed by the file type (example: screenshot.png). (Required)',
+            validate: screenshotsInput => {
+                if (screenshotsInput) {
+                    return true;
+                } else {
+                    console.log('Please provide a file name followed by the file type!');
                     return false;
                 }
             }
@@ -94,10 +134,10 @@ const questions = () => {
             message: 'Explain what is needed to allow contributing.',
             when: ({ confirmContributing }) => confirmContributing
         },
-        // Test?
+        // Tests?
         {
             type: 'confirm',
-            name: 'confirmTest',
+            name: 'confirmTests',
             message: 'Would you like to add any tests?',
             default: true
         },
@@ -138,12 +178,11 @@ const questions = () => {
 
     ]);
 };
-
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
+questions().then(answer => {
+        return readMe(answer)
+    })
+    .then(writeResponse => {
+        return fs.writeFile('./dist/read.md', writeResponse, err => {
+            err ? console.log(err) : console.log("created");
+        });
+    })
