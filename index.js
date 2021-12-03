@@ -4,21 +4,21 @@ const inquirer = require('inquirer')
 const readMe = require('./utils/readme-template')
     // TODO: Create a function to write README file
     // writing files
-    // const writeToFile = fileContent => {
-    //     return new Promise((resolve, reject) => {
-    //         fs.writeFile('./dist/readme.md', fileContent, err => {
-    //             if (err) {
-    //                 reject(err);
-    //                 return;
-    //             }
+const writeToFile = fileContent => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile('./dist/README.md', fileContent, err => {
+            if (err) {
+                reject(err);
+                return;
+            }
 
-//             resolve({
-//                 ok: true,
-//                 message: 'File created!'
-//             });
-//         });
-//     });
-// };
+            resolve({
+                ok: true,
+                message: 'File created!'
+            });
+        });
+    });
+};
 
 // TODO: Create an array of questions for user input
 const questions = () => {
@@ -51,19 +51,11 @@ const questions = () => {
                 }
             }
         },
-        // Installation?
-        {
-            type: 'confirm',
-            name: 'confirmInstallation',
-            message: 'Would you like to provide steps required to install your project?',
-            default: true
-        },
         // Provide installation guidance when confirmed above
         {
             type: 'input',
             name: 'installation',
             message: 'What are the steps required to install your project?',
-            when: ({ confirmInstallation }) => confirmInstallation
         },
         // App Usage
         {
@@ -84,7 +76,7 @@ const questions = () => {
             type: 'confirm',
             name: 'confirmScreenshots',
             message: 'Would you like to include screenshots?',
-            default: true
+            default: false
         },
         {
             type: 'input',
@@ -99,54 +91,24 @@ const questions = () => {
                 }
             }
         },
-        // Credits?
-        {
-            type: 'confirm',
-            name: 'confirmCredits',
-            message: 'Would you like to give credit or list any collaborators?',
-            default: true
-        },
-        // Credits when confirmed
-        {
-            type: 'input',
-            name: 'credits',
-            message: 'Give credit: ',
-            when: ({ confirmCredits }) => confirmCredits
-        },
         // Licese
         {
             type: 'rawlist',
             name: 'license',
             message: 'Please select the license that better suits your project:',
-            choices: ['Apache License 2.0', 'Boost Software License 1.0', 'BSD 3-Clause License', 'Eclipse Public License 1.0', 'GNU GPL v3', 'GNU AGPL v3', 'GNU LGPL v3', 'GNU FDL v1.3', 'The Hippocratic License 3.0', 'IBM Public License Version 1.0', 'ISC License (ISC)', 'MIT License', 'Mozilla Public License 2.0', 'Attribution License (BY)', 'Open Database License (ODbL)', 'Public Domain Dedication and License (PDDL)', 'The Perl License', 'The Artistic License 2.0', 'SIL Open Font License 1.1', 'The Unlicense', 'The zlib/libpng License']
-        },
-        // Allow contributing?
-        {
-            type: 'confirm',
-            name: 'confirmContributing',
-            message: 'Would you like to allow contributing?',
-            default: true
+            choices: ['Unlicense', 'MIT', 'GPLv2', 'Apache', 'GPLv3', 'BSD 3-clause', 'BSD 2-clause', 'LGPLv3', 'AGPLv3']
         },
         // Explain how to contribute to your project
         {
             type: 'input',
             name: 'contributing',
-            message: 'Explain what is needed to allow contributing.',
-            when: ({ confirmContributing }) => confirmContributing
-        },
-        // Tests?
-        {
-            type: 'confirm',
-            name: 'confirmTests',
-            message: 'Would you like to add any tests?',
-            default: true
+            message: 'Explain what is needed to allow contributing.'
         },
         // Write tests for your application
         {
             type: 'input',
             name: 'tests',
-            message: 'Write tests for your application. Then provide examples on how to run them.',
-            when: ({ confirmTests }) => confirmTests
+            message: 'Write tests for your application. Then provide examples on how to run them.'
         },
         // Questions
         {
@@ -181,8 +143,4 @@ const questions = () => {
 questions().then(answer => {
         return readMe(answer)
     })
-    .then(writeResponse => {
-        return fs.writeFile('./dist/read.md', writeResponse, err => {
-            err ? console.log(err) : console.log("created");
-        });
-    })
+    .then(writeResponses => { return writeToFile(writeResponses) })
