@@ -90,8 +90,7 @@ const generateTests = testsText => {
 module.exports = template => {
     // destructure page data by section
     const { installation, screenshots, credits, contributing, tests, ...header } = template;
-    return `${generateLicense(header.license)}
-# ${header.projectTitle}
+    return `# ${header.projectTitle} ${generateLicense(header.license)}
 
 ## Description
 
