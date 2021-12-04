@@ -81,15 +81,8 @@ const questions = () => {
         {
             type: 'input',
             name: 'screenshots',
-            message: 'If you would like to include screenshots, please type the file name followed by the file type (example: screenshot.png). (Required)',
-            validate: screenshotsInput => {
-                if (screenshotsInput) {
-                    return true;
-                } else {
-                    console.log('Please provide a file name followed by the file type!');
-                    return false;
-                }
-            }
+            message: 'If you would like to include screenshots, please type the file name followed by the file type (example: screenshot.png).',
+            when: ({ confirmScreenshots }) => confirmScreenshots
         },
         // Licese
         {
