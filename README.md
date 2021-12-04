@@ -14,7 +14,7 @@ This app will automatically generate a professional readme file for you!
 ### App Usage
 [Recording Link](https://watch.screencastify.com/v/aEihjBPYcIqvs6MemAJJ)
 
-![App Usage Recording](assets\images\app-usage-recording.gif)
+![App Usage Recording](./assets/images/app-usage-recording.gif)
 
 # Activity Instructions:
 
