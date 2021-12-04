@@ -71,19 +71,19 @@ const questions = () => {
                 }
             }
         },
-        // Screenshots?
-        {
-            type: 'confirm',
-            name: 'confirmScreenshots',
-            message: 'Would you like to include screenshots?',
-            default: false
-        },
-        {
-            type: 'input',
-            name: 'screenshots',
-            message: 'If you would like to include screenshots, please type the file name followed by the file type (example: screenshot.png).',
-            when: ({ confirmScreenshots }) => confirmScreenshots
-        },
+        // // Screenshots?
+        // {
+        //     type: 'confirm',
+        //     name: 'confirmScreenshots',
+        //     message: 'Would you like to include screenshots?',
+        //     default: false
+        // },
+        // {
+        //     type: 'input',
+        //     name: 'screenshots',
+        //     message: 'If you would like to include screenshots, please type the file name followed by the file type (example: screenshot.png).',
+        //     when: ({ confirmScreenshots }) => confirmScreenshots
+        // },
         // Licese
         {
             type: 'rawlist',

@@ -65,13 +65,13 @@ const generateInstallation = installationText => {
     }
     return `${installationText}`;
 };
-// create screenshots section
-const generateScreenshots = screenshotsText => {
-    if (!screenshotsText) {
-        return '';
-    }
-    return `${screenshotsText}`;
-};
+// // create screenshots section
+// const generateScreenshots = screenshotsText => {
+//     if (!screenshotsText) {
+//         return '';
+//     }
+//     return `${screenshotsText}`;
+// };
 // create contributing section
 const generateContributing = contributingText => {
     if (!contributingText) {
@@ -114,8 +114,6 @@ ${generateInstallation(installation)}
 ## Usage 
 
 ${header.usage}
-
-<img src="./assets/images/${generateScreenshots(screenshots)}" alt="Screenshot"/>
 
 ## License
 
