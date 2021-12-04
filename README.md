@@ -6,13 +6,15 @@ This app will automatically generate a professional readme file for you!
 
 ## Links
 
-* 🌎 [Live Github Page](https://gallolopez1.github.io/code-quiz/)
-* 💾 [Repo](https://github.com/gallolopez1/code-quiz)
+<!-- * 🌎 [Live Github Page](https://gallolopez1.github.io/.../) -->
+* 💾 [Repo](https://github.com/gallolopez1/readme-generator)
 
 ## <u>README Generator Preview:</u>
 
-### Quiz Start
-Video goes here.
+### App Usage
+[Recording Link](https://watch.screencastify.com/v/aEihjBPYcIqvs6MemAJJ)
+
+![App Usage Recording](assets\images\app-usage-recording.gif)
 
 # Activity Instructions:
 
